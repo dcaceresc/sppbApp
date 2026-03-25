@@ -1,0 +1,7 @@
+{
+  "name": "sppbApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
