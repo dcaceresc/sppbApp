@@ -1,0 +1,74 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start"></ion-buttons>
+    <ion-title>Test Levantarse de la Silla</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="reset()" [disabled]="running()">
+        <ion-icon slot="icon-only" name="refresh"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="chair-content">
+  <ion-card class="summary-card">
+    <ion-card-header>
+      <ion-card-title>Silla (5 repeticiones)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="full">
+        <ion-item>
+          <ion-label>Chair Stand Score</ion-label>
+          <span slot="end">{{ chairStandScore() ?? '—' }} / 4</span>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Total Final</strong></ion-label>
+          <span slot="end"><strong>{{ finalTotalScore() }} / 12</strong></span>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Levantarse de la silla x5</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="timer-card-content">
+      <ion-icon name="body" class="big-icon"></ion-icon>
+
+      <div class="timer-display">
+        <p class="timer-number">{{ seconds() }}<span class="timer-decimal">.{{ displayCentiseconds() }}</span></p>
+        <p class="timer-label">seconds</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  @if (finished()) {
+    <ion-card class="result-card">
+      <ion-card-content class="result-content">
+        <ion-badge [color]="scoreColor()" class="score-badge">{{ chairStandScore() }} / 4</ion-badge>
+        <p class="score-label">{{ scoreLabel() }}</p>
+      </ion-card-content>
+    </ion-card>
+  }
+
+  <ion-card>
+    <ion-card-content>
+      @if (!running() && !finished()) {
+        <ion-button expand="full" color="success" (click)="start()">Start</ion-button>
+        <ion-button expand="full" fill="outline" color="medium" (click)="markUnableToPerform()">
+          No puede hacerlo
+        </ion-button>
+      }
+      @if (running()) {
+        <ion-button expand="full" color="danger" (click)="stop()">Stop</ion-button>
+        <ion-button expand="full" fill="outline" color="medium" (click)="markUnableToPerform()">
+          No puede hacerlo
+        </ion-button>
+      }
+      @if (finished()) {
+        <ion-button expand="full" color="medium" (click)="reset()">Reiniciar pruebas</ion-button>
+      }
+    </ion-card-content>
+  </ion-card>
+</ion-content>

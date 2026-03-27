@@ -1,0 +1,68 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start"></ion-buttons>
+    <ion-title>Resultados Finales</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="reset()">
+        <ion-icon slot="icon-only" name="refresh"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="results-content">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Resumen SPPB</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="full">
+        <ion-item>
+          <ion-label><strong>Balance</strong></ion-label>
+          <span slot="end"><strong>{{ balanceSectionScore() }} / 4</strong></span>
+        </ion-item>
+        <ion-item>
+          <ion-label>1. Side-by-Side</ion-label>
+          <span slot="end">{{ sideBySideScore() }} / 1</span>
+        </ion-item>
+        <ion-item>
+          <ion-label>2. Semi-Tandem</ion-label>
+          <span slot="end">{{ semiTandemScore() }} / 1</span>
+        </ion-item>
+        <ion-item>
+          <ion-label>3. Tandem</ion-label>
+          <span slot="end">{{ tandemScore() }} / 2</span>
+        </ion-item>
+
+        <ion-item>
+          <ion-label><strong>Speed</strong></ion-label>
+          <span slot="end"><strong>{{ speedSectionScore() }} / 4</strong></span>
+        </ion-item>
+        <ion-item>
+          <ion-label>1. Trail 1</ion-label>
+          <span slot="end">{{ trail1Score() }} / 4</span>
+        </ion-item>
+        <ion-item>
+          <ion-label>2. Trail 2</ion-label>
+          <span slot="end">{{ trail2Score() }} / 4</span>
+        </ion-item>
+
+        <ion-item>
+          <ion-label><strong>Silla (5 repeticiones)</strong></ion-label>
+          <span slot="end"><strong>{{ chairStandScore() }} / 4</strong></span>
+        </ion-item>
+
+        <ion-item>
+          <ion-label><strong>Total Final SPPB</strong></ion-label>
+          <span slot="end"><strong>{{ finalTotalScore() }} / 12</strong></span>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-button expand="full" color="primary" (click)="reset()">Reiniciar pruebas</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+    </ion-buttons>
+    <ion-title>Test de Equilibrio</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="restart()">
+        <ion-icon slot="icon-only" name="refresh"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="balance-content">
+
+  <ion-card class="summary-card">
+    <ion-card-header>
+      <ion-card-title>Balance</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="full">
+        <ion-item [color]="currentStep === 'side-by-side' ? 'primary' : ''">
+          <ion-label>1. Side-by-Side</ion-label>
+          <span slot="end">{{ sideBySideScore ?? '—' }} / 1</span>
+        </ion-item>
+        <ion-item [color]="currentStep === 'semi-tandem' ? 'primary' : ''">
+          <ion-label>2. Semi-Tandem</ion-label>
+          <span slot="end">{{ semiTandemScore ?? '—' }} / 1</span>
+        </ion-item>
+        <ion-item [color]="currentStep === 'tandem' ? 'primary' : ''">
+          <ion-label>3. Tandem</ion-label>
+          <span slot="end">{{ tandemScore ?? '—' }} / 2</span>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Section Score</strong></ion-label>
+          <span slot="end"><strong>{{ sectionScore }} / 4</strong></span>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  @if (currentStep === 'side-by-side') {
+    <app-side-by-side class="test-step" (nextStep)="goToSemiTandem($event)" (skipToSpeedTest)="goToSpeedTest()" />
+  }
+  @if (currentStep === 'semi-tandem') {
+    <app-semi-tandem class="test-step" (nextStep)="goToTandem($event)" (skipToSpeedTest)="goToSpeedTest()" />
+  }
+  @if (currentStep === 'tandem') {
+    <app-tandem class="test-step" (result)="saveTandemResult($event)" (skipToSpeedTest)="goToSpeedTest()" />
+  }
+
+</ion-content>

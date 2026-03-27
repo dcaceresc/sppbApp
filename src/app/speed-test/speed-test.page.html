@@ -1,0 +1,76 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+    </ion-buttons>
+    <ion-title>Test de Velocidad</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="reset()" [disabled]="running()">
+        <ion-icon slot="icon-only" name="refresh"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="speed-content">
+
+  <ion-card class="summary-card">
+    <ion-card-header>
+      <ion-card-title>Speed</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="full">
+        <ion-item [color]="currentTrail() === 1 ? 'primary' : ''">
+          <ion-label>1. Trail 1</ion-label>
+          <span slot="end">{{ trail1Score() ?? '—' }} / 4</span>
+        </ion-item>
+        <ion-item [color]="currentTrail() === 2 ? 'primary' : ''">
+          <ion-label>2. Trail 2</ion-label>
+          <span slot="end">{{ trail2Score() ?? '—' }} / 4</span>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Section Score</strong></ion-label>
+          <span slot="end"><strong>{{ speedSectionScore() }} / 4</strong></span>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Total Score</strong></ion-label>
+          <span slot="end"><strong>{{ totalScore() }} / 8</strong></span>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="timer-card">
+    <ion-card-header>
+      <ion-card-title>Marcha 4 metros · Trail {{ currentTrail() }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="timer-card-content">
+      <ion-icon name="walk" class="big-icon"></ion-icon>
+
+      <div class="timer-display">
+        <p class="timer-number">{{ seconds() }}<span class="timer-decimal">.{{ displayMilliseconds() }}</span></p>
+        <p class="timer-label">seconds</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      @if (!running() && !secondTrailCompleted()) {
+        <ion-button expand="full" color="success" (click)="start()">Start</ion-button>
+        <ion-button expand="full" fill="outline" color="medium" (click)="markUnableToPerform()">
+          No puede hacerlo
+        </ion-button>
+      }
+      @if (running()) {
+        <ion-button expand="full" color="danger" (click)="stop()">Stop</ion-button>
+        <ion-button expand="full" fill="outline" color="medium" (click)="markUnableToPerform()">
+          No puede hacerlo
+        </ion-button>
+      }
+      @if (!running() && secondTrailCompleted()) {
+        <ion-button expand="full" color="primary" (click)="goToChairStandTest()">Next</ion-button>
+      }
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

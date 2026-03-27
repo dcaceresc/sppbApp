@@ -1,0 +1,27 @@
+.balance-content {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-bottom: 16px;
+}
+
+.summary-card {
+  margin: 10px 0 8px;
+}
+
+.summary-card ion-card-header {
+  padding-bottom: 6px;
+}
+
+.summary-card ion-card-title {
+  font-size: 1rem;
+}
+
+.summary-card ion-item {
+  --min-height: 40px;
+  font-size: 0.93rem;
+}
+
+.test-step {
+  display: block;
+  margin-top: 6px;
+}

@@ -1,0 +1,75 @@
+ion-card-title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.timer-card-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 12px 12px 10px !important;
+	gap: 10px;
+}
+
+.timer-top {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.big-icon {
+	font-size: 52px !important;
+	width: 52px;
+	height: 52px;
+	color: var(--ion-color-primary);
+}
+
+.timer-display {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	line-height: 1;
+}
+
+.timer-number {
+	font-size: 56px;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+	letter-spacing: -1px;
+	margin: 0;
+}
+
+.timer-decimal {
+	font-size: 40px;
+}
+
+.timer-label {
+	font-size: 11px;
+	color: var(--ion-color-medium);
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin: 4px 0 0;
+}
+
+.next-button {
+	margin-top: 6px;
+}
+
+ion-progress-bar {
+	height: 6px;
+	border-radius: 4px;
+	width: 100%;
+}
+
+@media (max-width: 360px) {
+	.timer-number {
+		font-size: 48px;
+	}
+
+	.timer-decimal {
+		font-size: 34px;
+	}
+}

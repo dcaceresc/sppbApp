@@ -1,0 +1,26 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Semi-Tandem</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content class="timer-card-content">
+    <div class="timer-top">
+      <ion-icon name="footsteps" class="big-icon"></ion-icon>
+
+      <div class="timer-display">
+        <p class="timer-number">{{ seconds() }}<span class="timer-decimal">.{{ displayMilliseconds() }}</span></p>
+        <p class="timer-label">seconds</p>
+      </div>
+    </div>
+
+    <ion-progress-bar [value]="progress()" [color]="running() ? 'success' : 'medium'"></ion-progress-bar>
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-content>
+    <ion-button expand="full" [color]="buttonColor()" (click)="toggleTimer()">
+      {{ buttonText() }}
+    </ion-button>
+  </ion-card-content>
+</ion-card>

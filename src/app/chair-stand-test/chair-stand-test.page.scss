@@ -1,0 +1,72 @@
+.chair-content {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-bottom: 16px;
+}
+
+.timer-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px 12px !important;
+}
+
+.big-icon {
+  font-size: 52px !important;
+  width: 52px;
+  height: 52px;
+  color: var(--ion-color-primary);
+  flex-shrink: 0;
+}
+
+.timer-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.timer-number {
+  font-size: 56px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+.timer-decimal {
+  font-size: 40px;
+}
+
+.timer-label {
+  font-size: 11px;
+  color: var(--ion-color-medium);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 4px 0 0;
+}
+
+.result-card {
+  margin-top: 6px;
+}
+
+.result-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px !important;
+}
+
+.score-badge {
+  font-size: 2rem;
+  padding: 10px 20px;
+  border-radius: 12px;
+}
+
+.score-label {
+  font-size: 0.95rem;
+  color: var(--ion-color-medium);
+  margin: 0;
+}
