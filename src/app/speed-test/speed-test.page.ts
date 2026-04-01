@@ -149,7 +149,9 @@ export class SpeedTestPage implements OnDestroy {
     this.tandemScore.set(0);
     this.balanceScore.set(0);
 
-    this.router.navigate(['/']);
+    this.router.navigate(['/'], {
+      queryParams: { restart: 1 }
+    });
   }
 
   private getScoreForTime(timeMs: number): number {

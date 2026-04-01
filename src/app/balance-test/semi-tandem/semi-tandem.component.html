@@ -22,5 +22,8 @@
     <ion-button expand="full" [color]="buttonColor()" (click)="toggleTimer()">
       {{ buttonText() }}
     </ion-button>
+    <ion-button expand="full" fill="outline" color="medium" (click)="cannotPerform()" [disabled]="running()">
+      No puede hacerlo
+    </ion-button>
   </ion-card-content>
 </ion-card>

@@ -50,6 +50,13 @@ export class TandemComponent implements OnDestroy {
     }
   }
 
+  cannotPerform() {
+    this.stopTimer();
+    this.time.set(0);
+    this.result.emit(0);
+    this.skipToSpeedTest.emit();
+  }
+
   submitResult() {
     const elapsed = this.time();
 

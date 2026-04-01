@@ -85,7 +85,10 @@ export class FinalResultsPage {
     this.trail2Score.set(0);
     this.chairStandScore.set(0);
 
-    this.router.navigate(['/'], { replaceUrl: true });
+    this.router.navigate(['/'], {
+      queryParams: { restart: 1 },
+      replaceUrl: true
+    });
   }
 
   private parseScore(value: string | null): number {

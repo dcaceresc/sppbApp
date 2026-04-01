@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonIcon,
   IonCard, IonCardContent, IonCardHeader, IonCardTitle,
@@ -34,8 +34,17 @@ export class BalanceTestPage {
     return (this.sideBySideScore ?? 0) + (this.semiTandemScore ?? 0) + (this.tandemScore ?? 0);
   }
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     addIcons({ refresh });
+
+    this.route.queryParamMap.subscribe(params => {
+      if (params.get('restart') === '1') {
+        this.restart();
+      }
+    });
   }
 
   goToSemiTandem(score: number) {
@@ -65,9 +74,13 @@ export class BalanceTestPage {
   }
 
   restart() {
-    this.currentStep = 'side-by-side';
+    this.currentStep = '';
     this.sideBySideScore = null;
     this.semiTandemScore = null;
     this.tandemScore = null;
+
+    setTimeout(() => {
+      this.currentStep = 'side-by-side';
+    }, 0);
   }
 }

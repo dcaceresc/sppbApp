@@ -190,7 +190,9 @@ export class ChairStandTestPage implements OnDestroy {
     this.speedScore.set(0);
     this.previousTotalScore.set(0);
 
-    this.router.navigate(['/']);
+    this.router.navigate(['/'], {
+      queryParams: { restart: 1 }
+    });
   }
 
   private resetInternalState() {

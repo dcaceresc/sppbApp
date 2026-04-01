@@ -45,6 +45,13 @@ export class SemiTandemComponent implements OnDestroy {
     }
   }
 
+  cannotPerform() {
+    this.stopTimer();
+    this.time.set(0);
+    this.nextStep.emit(0);
+    this.skipToSpeedTest.emit();
+  }
+
   goNext() {
     this.nextStep.emit(this.time() >= 10000 ? 1 : 0);
   }
