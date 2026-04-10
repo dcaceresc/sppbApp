@@ -46,6 +46,12 @@
           <ion-label>2. Trail 2</ion-label>
           <span slot="end">{{ trail2Score() }} / 4</span>
         </ion-item>
+        @if (bestMetersPerSecond()) {
+          <ion-item>
+            <ion-label>Mejor velocidad</ion-label>
+            <span slot="end">{{ bestMetersPerSecond() }} m/s</span>
+          </ion-item>
+        }
 
         <ion-item>
           <ion-label><strong>Silla (5 repeticiones)</strong></ion-label>

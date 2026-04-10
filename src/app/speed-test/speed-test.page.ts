@@ -29,6 +29,17 @@ export class SpeedTestPage implements OnDestroy {
 
   trail1Score = signal<number | null>(null);
   trail2Score = signal<number | null>(null);
+  trail1TimeMs = signal<number | null>(null);
+  trail2TimeMs = signal<number | null>(null);
+
+  trail1MetersPerSecond = computed(() => {
+    const t = this.trail1TimeMs();
+    return t ? +(4000 / t).toFixed(2) : null;
+  });
+  trail2MetersPerSecond = computed(() => {
+    const t = this.trail2TimeMs();
+    return t ? +(4000 / t).toFixed(2) : null;
+  });
   sideBySideScore = signal(0);
   semiTandemScore = signal(0);
   tandemScore = signal(0);
@@ -93,12 +104,14 @@ export class SpeedTestPage implements OnDestroy {
 
     if (this.currentTrail() === 1) {
       this.trail1Score.set(currentScore);
+      this.trail1TimeMs.set(this.time());
       this.currentTrail.set(2);
       this.time.set(0);
       return;
     }
 
     this.trail2Score.set(currentScore);
+    this.trail2TimeMs.set(this.time());
     this.secondTrailCompleted.set(true);
   }
 
@@ -126,6 +139,8 @@ export class SpeedTestPage implements OnDestroy {
         tandemScore: this.tandemScore(),
         trail1Score: this.trail1Score() ?? 0,
         trail2Score: this.trail2Score() ?? 0,
+        trail1MetersPerSecond: this.trail1MetersPerSecond() ?? 0,
+        trail2MetersPerSecond: this.trail2MetersPerSecond() ?? 0,
         balanceScore: this.balanceScore(),
         speedScore: this.speedSectionScore(),
         totalScore: this.totalScore()
@@ -143,6 +158,8 @@ export class SpeedTestPage implements OnDestroy {
 
     this.trail1Score.set(null);
     this.trail2Score.set(null);
+    this.trail1TimeMs.set(null);
+    this.trail2TimeMs.set(null);
 
     this.sideBySideScore.set(0);
     this.semiTandemScore.set(0);

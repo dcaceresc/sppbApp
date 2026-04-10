@@ -54,6 +54,8 @@ export class ChairStandTestPage implements OnDestroy {
   tandemScore = signal(0);
   trail1Score = signal(0);
   trail2Score = signal(0);
+  trail1MetersPerSecond = signal(0);
+  trail2MetersPerSecond = signal(0);
   balanceScore = signal(0);
   speedScore = signal(0);
   previousTotalScore = signal(0);
@@ -84,6 +86,11 @@ export class ChairStandTestPage implements OnDestroy {
       this.tandemScore.set(Number.isFinite(tandem) ? tandem : 0);
       this.trail1Score.set(Number.isFinite(trail1) ? trail1 : 0);
       this.trail2Score.set(Number.isFinite(trail2) ? trail2 : 0);
+
+      const t1ms = Number(params.get('trail1MetersPerSecond'));
+      const t2ms = Number(params.get('trail2MetersPerSecond'));
+      this.trail1MetersPerSecond.set(Number.isFinite(t1ms) ? t1ms : 0);
+      this.trail2MetersPerSecond.set(Number.isFinite(t2ms) ? t2ms : 0);
 
       const computedBalance = this.sideBySideScore() + this.semiTandemScore() + this.tandemScore();
       const computedSpeed = this.trail1Score() + this.trail2Score();
@@ -173,6 +180,8 @@ export class ChairStandTestPage implements OnDestroy {
         tandemScore: this.tandemScore(),
         trail1Score: this.trail1Score(),
         trail2Score: this.trail2Score(),
+        trail1MetersPerSecond: this.trail1MetersPerSecond(),
+        trail2MetersPerSecond: this.trail2MetersPerSecond(),
         chairStandScore
       }
     });
@@ -186,6 +195,8 @@ export class ChairStandTestPage implements OnDestroy {
     this.tandemScore.set(0);
     this.trail1Score.set(0);
     this.trail2Score.set(0);
+    this.trail1MetersPerSecond.set(0);
+    this.trail2MetersPerSecond.set(0);
     this.balanceScore.set(0);
     this.speedScore.set(0);
     this.previousTotalScore.set(0);

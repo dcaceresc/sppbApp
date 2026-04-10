@@ -47,6 +47,8 @@ export class FinalResultsPage {
   tandemScore = signal(0);
   trail1Score = signal(0);
   trail2Score = signal(0);
+  trail1MetersPerSecond = signal(0);
+  trail2MetersPerSecond = signal(0);
   chairStandScore = signal(0);
 
   constructor(
@@ -61,6 +63,8 @@ export class FinalResultsPage {
       this.tandemScore.set(this.parseScore(params.get('tandemScore')));
       this.trail1Score.set(this.parseScore(params.get('trail1Score')));
       this.trail2Score.set(this.parseScore(params.get('trail2Score')));
+      this.trail1MetersPerSecond.set(this.parseScore(params.get('trail1MetersPerSecond')));
+      this.trail2MetersPerSecond.set(this.parseScore(params.get('trail2MetersPerSecond')));
       this.chairStandScore.set(this.parseScore(params.get('chairStandScore')));
     });
   }
@@ -73,6 +77,14 @@ export class FinalResultsPage {
     return Math.max(this.trail1Score(), this.trail2Score());
   });
 
+  bestMetersPerSecond = computed(() => {
+    const s1 = this.trail1Score();
+    const s2 = this.trail2Score();
+    if (s1 > s2) return this.trail1MetersPerSecond();
+    if (s2 > s1) return this.trail2MetersPerSecond();
+    return Math.max(this.trail1MetersPerSecond(), this.trail2MetersPerSecond());
+  });
+
   finalTotalScore = computed(() => {
     return this.balanceSectionScore() + this.speedSectionScore() + this.chairStandScore();
   });
@@ -83,6 +95,8 @@ export class FinalResultsPage {
     this.tandemScore.set(0);
     this.trail1Score.set(0);
     this.trail2Score.set(0);
+    this.trail1MetersPerSecond.set(0);
+    this.trail2MetersPerSecond.set(0);
     this.chairStandScore.set(0);
 
     this.router.navigate(['/'], {
