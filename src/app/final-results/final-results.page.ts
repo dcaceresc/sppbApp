@@ -17,7 +17,8 @@ import {
   IonLabel
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { refresh } from 'ionicons/icons';
+import { refresh, moon, sunny } from 'ionicons/icons';
+import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-final-results',
@@ -53,9 +54,10 @@ export class FinalResultsPage {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public theme: ThemeService
   ) {
-    addIcons({ refresh });
+    addIcons({ refresh, moon, sunny });
 
     this.route.queryParamMap.subscribe(params => {
       this.sideBySideScore.set(this.parseScore(params.get('sideBySideScore')));

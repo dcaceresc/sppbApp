@@ -2,8 +2,11 @@
   <ion-toolbar>
     <ion-buttons slot="start">
     </ion-buttons>
-    <ion-title>Test de Equilibrio</ion-title>
+    <ion-title>Balance Test</ion-title>
     <ion-buttons slot="end">
+      <ion-button (click)="theme.toggle()">
+        <ion-icon slot="icon-only" [name]="theme.isDark() ? 'sunny' : 'moon'"></ion-icon>
+      </ion-button>
       <ion-button (click)="restart()">
         <ion-icon slot="icon-only" name="refresh"></ion-icon>
       </ion-button>

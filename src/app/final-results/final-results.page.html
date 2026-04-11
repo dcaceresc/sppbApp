@@ -1,8 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start"></ion-buttons>
-    <ion-title>Resultados Finales</ion-title>
+    <ion-title>Final Results</ion-title>
     <ion-buttons slot="end">
+      <ion-button (click)="theme.toggle()">
+        <ion-icon slot="icon-only" [name]="theme.isDark() ? 'sunny' : 'moon'"></ion-icon>
+      </ion-button>
       <ion-button (click)="reset()">
         <ion-icon slot="icon-only" name="refresh"></ion-icon>
       </ion-button>
@@ -13,7 +16,7 @@
 <ion-content [fullscreen]="true" class="results-content">
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Resumen SPPB</ion-card-title>
+      <ion-card-title>SPPB Summary</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-list lines="full">
@@ -48,13 +51,13 @@
         </ion-item>
         @if (bestMetersPerSecond()) {
           <ion-item>
-            <ion-label>Mejor velocidad</ion-label>
+            <ion-label>Best Speed</ion-label>
             <span slot="end">{{ bestMetersPerSecond() }} m/s</span>
           </ion-item>
         }
 
         <ion-item>
-          <ion-label><strong>Silla (5 repeticiones)</strong></ion-label>
+          <ion-label><strong>Chair Stand (5 repetitions)</strong></ion-label>
           <span slot="end"><strong>{{ chairStandScore() }} / 4</strong></span>
         </ion-item>
 
@@ -68,7 +71,7 @@
 
   <ion-card>
     <ion-card-content>
-      <ion-button expand="full" color="primary" (click)="reset()">Reiniciar pruebas</ion-button>
+      <ion-button expand="full" color="primary" (click)="reset()">Reset Tests</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

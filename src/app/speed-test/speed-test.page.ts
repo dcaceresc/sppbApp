@@ -6,7 +6,8 @@ import {
   IonList, IonItem, IonLabel
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { walk, refresh } from 'ionicons/icons';
+import { walk, refresh, moon, sunny } from 'ionicons/icons';
+import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-speed-test',
@@ -50,11 +51,14 @@ export class SpeedTestPage implements OnDestroy {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public theme: ThemeService
   ) {
-    addIcons({ walk, refresh });
+    addIcons({ walk, refresh, moon, sunny });
 
     this.route.queryParamMap.subscribe(params => {
+      this.resetSpeedState();
+
       const sideBySide = Number(params.get('sideBySideScore'));
       const semiTandem = Number(params.get('semiTandemScore'));
       const tandem = Number(params.get('tandemScore'));
@@ -176,6 +180,19 @@ export class SpeedTestPage implements OnDestroy {
     if (timeMs <= 6200) return 3;
     if (timeMs <= 8700) return 2;
     return 1;
+  }
+
+  private resetSpeedState() {
+    clearInterval(this.intervalId);
+    this.time.set(0);
+    this.running.set(false);
+    this.unableToPerform.set(false);
+    this.currentTrail.set(1);
+    this.secondTrailCompleted.set(false);
+    this.trail1Score.set(null);
+    this.trail2Score.set(null);
+    this.trail1TimeMs.set(null);
+    this.trail2TimeMs.set(null);
   }
 
 

@@ -2,8 +2,11 @@
   <ion-toolbar>
     <ion-buttons slot="start">
     </ion-buttons>
-    <ion-title>Test de Velocidad</ion-title>
+    <ion-title>Speed Test</ion-title>
     <ion-buttons slot="end">
+      <ion-button (click)="theme.toggle()">
+        <ion-icon slot="icon-only" [name]="theme.isDark() ? 'sunny' : 'moon'"></ion-icon>
+      </ion-button>
       <ion-button (click)="reset()" [disabled]="running()">
         <ion-icon slot="icon-only" name="refresh"></ion-icon>
       </ion-button>
@@ -41,7 +44,7 @@
 
   <ion-card class="timer-card">
     <ion-card-header>
-      <ion-card-title>Marcha 4 metros · Trail {{ currentTrail() }}</ion-card-title>
+      <ion-card-title>4-Meter Walk · Trail {{ currentTrail() }}</ion-card-title>
     </ion-card-header>
     <ion-card-content class="timer-card-content">
       <ion-icon name="walk" class="big-icon"></ion-icon>
@@ -58,13 +61,13 @@
       @if (!running() && !secondTrailCompleted()) {
         <ion-button expand="full" color="success" (click)="start()">Start</ion-button>
         <ion-button expand="full" fill="outline" color="medium" (click)="markUnableToPerform()">
-          No puede hacerlo
+          Unable to perform
         </ion-button>
       }
       @if (running()) {
         <ion-button expand="full" color="danger" (click)="stop()">Stop</ion-button>
         <ion-button expand="full" fill="outline" color="medium" (click)="markUnableToPerform()">
-          No puede hacerlo
+          Unable to perform
         </ion-button>
       }
       @if (!running() && secondTrailCompleted()) {

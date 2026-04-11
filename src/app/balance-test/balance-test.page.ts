@@ -6,10 +6,11 @@ import {
   IonList, IonItem, IonLabel
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { refresh } from 'ionicons/icons';
+import { refresh, moon, sunny } from 'ionicons/icons';
 import { SideBySideComponent } from './side-by-side/side-by-side.component';
 import { SemiTandemComponent } from './semi-tandem/semi-tandem.component';
 import { TandemComponent } from './tandem/tandem.component';
+import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-balance-test',
@@ -36,9 +37,10 @@ export class BalanceTestPage {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public theme: ThemeService
   ) {
-    addIcons({ refresh });
+    addIcons({ refresh, moon, sunny });
 
     this.route.queryParamMap.subscribe(params => {
       if (params.get('restart') === '1') {

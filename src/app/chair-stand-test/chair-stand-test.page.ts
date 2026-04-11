@@ -18,7 +18,8 @@ import {
   IonLabel
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { refresh, body } from 'ionicons/icons';
+import { refresh, body, moon, sunny } from 'ionicons/icons';
+import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-chair-stand-test',
@@ -65,9 +66,10 @@ export class ChairStandTestPage implements OnDestroy {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public theme: ThemeService
   ) {
-    addIcons({ refresh, body });
+    addIcons({ refresh, body, moon, sunny });
 
     this.route.queryParamMap.subscribe(params => {
       this.resetInternalState();

@@ -1,8 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start"></ion-buttons>
-    <ion-title>Test Levantarse de la Silla</ion-title>
+    <ion-title>Chair Stand Test</ion-title>
     <ion-buttons slot="end">
+      <ion-button (click)="theme.toggle()">
+        <ion-icon slot="icon-only" [name]="theme.isDark() ? 'sunny' : 'moon'"></ion-icon>
+      </ion-button>
       <ion-button (click)="reset()" [disabled]="running()">
         <ion-icon slot="icon-only" name="refresh"></ion-icon>
       </ion-button>
@@ -13,7 +16,7 @@
 <ion-content [fullscreen]="true" class="chair-content">
   <ion-card class="summary-card">
     <ion-card-header>
-      <ion-card-title>Silla (5 repeticiones)</ion-card-title>
+      <ion-card-title>Chair Stand (5 repetitions)</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-list lines="full">
@@ -31,7 +34,7 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Levantarse de la silla x5</ion-card-title>
+      <ion-card-title>Chair Stand (5 repetitions)</ion-card-title>
     </ion-card-header>
     <ion-card-content class="timer-card-content">
       <ion-icon name="body" class="big-icon"></ion-icon>
@@ -57,17 +60,17 @@
       @if (!running() && !finished()) {
         <ion-button expand="full" color="success" (click)="start()">Start</ion-button>
         <ion-button expand="full" fill="outline" color="medium" (click)="markUnableToPerform()">
-          No puede hacerlo
+          Unable to perform
         </ion-button>
       }
       @if (running()) {
         <ion-button expand="full" color="danger" (click)="stop()">Stop</ion-button>
         <ion-button expand="full" fill="outline" color="medium" (click)="markUnableToPerform()">
-          No puede hacerlo
+          Unable to perform
         </ion-button>
       }
       @if (finished()) {
-        <ion-button expand="full" color="medium" (click)="reset()">Reiniciar pruebas</ion-button>
+        <ion-button expand="full" color="medium" (click)="reset()">Reset</ion-button>
       }
     </ion-card-content>
   </ion-card>
